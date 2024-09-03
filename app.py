@@ -58,10 +58,15 @@ def home():
 @login_required
 def run_flask():
     try:
+        # Define the command to change directory and run Flask
         command = (
-            "/home/PDFHarvest2/env/bin/python -m flask run -h 0.0.0.0 -p 5000 > /home/PDFHarvest2/ph.logs 2>&1 &"
+            "cd /home/PDFHarvest2 && "
+            "nohup /home/PDFHarvest2/env/bin/python -m flask run -h 0.0.0.0 -p 5000 > ph.logs 2>&1 &"
         )
+        
+        # Execute the command
         subprocess.run(command, shell=True, check=True)
+        
         return jsonify({"status": "success", "message": "Flask application started on port 5000."})
 
     except subprocess.CalledProcessError as e:
@@ -71,10 +76,15 @@ def run_flask():
 @login_required
 def run_flask2():
     try:
+        # Define the command to change directory and run Flask
         command = (
-            "/home/PDFHarvest3/env/bin/python -m flask run -h 0.0.0.0 -p 3000 > /home/PDFHarvest3/ph2.logs 2>&1 &"
+            "cd /home/PDFHarvest3 && "
+            "nohup /home/PDFHarvest3/env/bin/python -m flask run -h 0.0.0.0 -p 3000 > ph2.logs 2>&1 &"
         )
+        
+        # Execute the command
         subprocess.run(command, shell=True, check=True)
+        
         return jsonify({"status": "success", "message": "Flask application started on port 3000."})
 
     except subprocess.CalledProcessError as e:
