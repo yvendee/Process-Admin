@@ -9,7 +9,7 @@ app = Flask("ProcessAdmin")
 CORS(app)
 
 # Secret key for session management
-app.secret_key = 'your_secret_key'  # Change this to a secure secret key
+app.secret_key = 'unique_secret_key_for_processadmin'  # Change this to a secure secret key
 
 # Hardcoded username and password (for demo purposes)
 USERNAME = "admin"
