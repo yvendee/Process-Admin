@@ -54,42 +54,28 @@ def index():
 def home():
     return render_template('home/home-page.html')
 
-# Protected route that requires login for the first action
 @app.route('/run_flask2', methods=['GET'])
 @login_required
 def run_flask():
     try:
-        # Define the commands to be executed
         command = (
-            "cd /home/PDFHarvest2 && "
-            "source /home/PDFHarvest2/env/bin/activate && "
-            "nohup flask run -h 0.0.0.0 -p 5000 > /home/PDFHarvest2/ph.logs &"
+            "/home/PDFHarvest2/env/bin/python -m flask run -h 0.0.0.0 -p 5000 > /home/PDFHarvest2/ph.logs 2>&1 &"
         )
-        
-        # Execute the command
         subprocess.run(command, shell=True, check=True)
-        
-        return jsonify({"status": "success", "message": "Commands executed successfully."})
+        return jsonify({"status": "success", "message": "Flask application started on port 5000."})
 
     except subprocess.CalledProcessError as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# Protected route that requires login for the second action
 @app.route('/run_flask3', methods=['GET'])
 @login_required
 def run_flask2():
     try:
-        # Define the command to activate the environment and run Flask
         command = (
-            "cd /home/PDFHarvest3 && "
-            "source /home/PDFHarvest3/env/bin/activate && "
-            "nohup flask run -h 0.0.0.0 -p 3000 > /home/PDFHarvest3/ph2.logs &"
+            "/home/PDFHarvest3/env/bin/python -m flask run -h 0.0.0.0 -p 3000 > /home/PDFHarvest3/ph2.logs 2>&1 &"
         )
-        
-        # Execute the command
         subprocess.run(command, shell=True, check=True)
-        
-        return jsonify({"status": "success", "message": "Commands executed successfully."})
+        return jsonify({"status": "success", "message": "Flask application started on port 3000."})
 
     except subprocess.CalledProcessError as e:
         return jsonify({"status": "error", "message": str(e)}), 500
