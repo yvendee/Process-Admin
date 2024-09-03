@@ -60,15 +60,14 @@ def home():
 def run_flask():
     try:
         # Define the commands to be executed
-        commands = [
-            "cd /home/PDFHarvest2",
-            "source /home/PDFHarvest2/env/bin/activate",
+        command = (
+            "cd /home/PDFHarvest2 && "
+            "source /home/PDFHarvest2/env/bin/activate && "
             "nohup flask run -h 0.0.0.0 -p 5000 > /home/PDFHarvest2/ph.logs &"
-        ]
+        )
         
-        # Execute each command
-        for command in commands:
-            subprocess.run(command, shell=True, check=True)
+        # Execute the command
+        subprocess.run(command, shell=True, check=True)
         
         return jsonify({"status": "success", "message": "Commands executed successfully."})
 
@@ -80,16 +79,15 @@ def run_flask():
 @login_required
 def run_flask2():
     try:
-        # Define different commands for the second action
-        commands = [
-            "cd /home/PDFHarvest3",
-            "source /home/PDFHarvest3/env/bin/activate",
+        # Define the command to activate the environment and run Flask
+        command = (
+            "cd /home/PDFHarvest3 && "
+            "source /home/PDFHarvest3/env/bin/activate && "
             "nohup flask run -h 0.0.0.0 -p 3000 > /home/PDFHarvest3/ph2.logs &"
-        ]
+        )
         
-        # Execute each command
-        for command in commands:
-            subprocess.run(command, shell=True, check=True)
+        # Execute the command
+        subprocess.run(command, shell=True, check=True)
         
         return jsonify({"status": "success", "message": "Commands executed successfully."})
 
