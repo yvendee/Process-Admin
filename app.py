@@ -12,8 +12,8 @@ CORS(app)
 app.secret_key = 'unique_secret_key_for_processadmin'  # Change this to a secure secret key
 
 # Hardcoded username and password (for demo purposes)
-USERNAME = "admin"
-PASSWORD = "password$$"
+USERNAME = "searchmaid"
+PASSWORD = "maidasia"
 
 # Decorator to require login for certain routes
 def login_required(f):
